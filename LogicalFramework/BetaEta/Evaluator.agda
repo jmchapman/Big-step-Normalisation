@@ -9,7 +9,7 @@ open import BetaEta.Value
 mutual
   ev : forall {Γ Δ σ} -> Tm Δ σ -> (vs : Env Γ Δ) -> Val Γ (σ [ embˢ vs ]⁺)
   ev (coe t p)     vs        = coev (ev t (coevˢ vs reflˠ (symˠ(fog⁺ p)))) 
-                                    (cong⁺ p (symˢ (cohvˢ vs _ _))) 
+                                    (cong⁺ p (symˢ (cohvˢ vs reflˠ _))) 
   ev (t [ ts ])    vs        = coev (ev t (evˢ ts vs)) 
                                     (trans⁺ (cong⁺ refl⁺ (symˢ (comevˢ ts vs)))
                                             (sym⁺ assoc⁺)) 
@@ -40,7 +40,7 @@ mutual
   abstract
     comev : forall {Γ Δ σ}(t : Tm Δ σ)(vs : Env Γ Δ) ->
           t [ embˢ vs ] ≡ emb (ev t vs)
-    comev (coe t p)     vs        = trans (trans (cong (coh _ _) (cohvˢ vs _ _)) 
+    comev (coe t p)     vs        = trans (trans (cong (coh _ _) (cohvˢ vs reflˠ _)) 
                                                  (comev t (coevˢ vs _ _))) 
                                           (sym (coh _ _)) 
     comev (t [ ts ])    vs        = trans (trans (trans assoc 
@@ -63,9 +63,9 @@ mutual
     comevˢ : forall {Γ Δ Σ}(ts : Sub Δ Σ)(vs : Env Γ Δ) ->
            ts • embˢ vs ≡ˢ embˢ (evˢ ts vs)
     comevˢ (coeˢ ts p q) vs        = transˢ (transˢ (cong• (cohˢ ts _ _)
-                                                         (cohvˢ vs _ _))
+                                                         (cohvˢ vs reflˠ _))
                                                   (comevˢ ts _)) 
-                                          (cohvˢ (evˢ ts _) _ _)  
+                                          (cohvˢ (evˢ ts _) reflˠ _)  
     comevˢ (ts • us)     vs        = transˢ (transˢ assocˢ
                                                   (cong• reflˢ (comevˢ us vs))) 
                                           (comevˢ ts (evˢ us vs)) 
@@ -119,7 +119,7 @@ abstract
   comev⁺ : forall {Γ Δ}(σ : Ty Δ)(vs : Env Γ Δ) ->
            σ [ embˢ vs ]⁺ ≡⁺ emb⁺ (ev⁺ σ vs)
   comev⁺ (coe⁺ σ p)  vs =
-    trans⁺ (cong⁺ (coh⁺ _ _) (cohvˢ vs _ _))
+    trans⁺ (cong⁺ (coh⁺ _ _) (cohvˢ vs reflˠ _))
           (comev⁺ σ (coevˢ vs reflˠ (symˠ p)))
   comev⁺ (σ [ ts ]⁺) vs =
     trans⁺ assoc⁺ (trans⁺ (cong⁺ refl⁺ (comevˢ ts vs)) (comev⁺ σ (evˢ ts vs)))

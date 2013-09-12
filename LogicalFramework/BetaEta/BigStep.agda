@@ -10,7 +10,7 @@ mutual
     evcoe : forall {Γ Δ  Δ'}{σ : Ty Δ}{σ'}{t : Tm Δ' σ'}{p : σ' ≡⁺ σ}
             {vs : Env Γ Δ}{v : Val Γ _} -> 
             ev t & coevˢ vs reflˠ (symˠ (fog⁺ p)) ⇓ v ->
-            ev coe t p & vs ⇓ coev v (cong⁺ p (symˢ (cohvˢ vs _ _)))
+            ev coe t p & vs ⇓ coev v (cong⁺ p (symˢ (cohvˢ vs reflˠ _)))
     ev[] : forall {B Γ Δ σ}{t : Tm Δ σ}{ts : Sub Γ Δ}{vs : Env B Γ}
            {vs' : Env B Δ}(p : evˢ ts & vs ⇓ vs') -> 
            {v : Val B _} -> ev t & vs' ⇓ v -> 
@@ -75,7 +75,7 @@ mutual
   comev : forall {Γ Δ σ} t (vs : Env Γ Δ){v : Val Γ (σ [ embˢ vs ]⁺)} -> 
           ev t & vs ⇓ v -> t [ embˢ vs ] ≡ emb v
   comev (coe t p) vs (evcoe p') = 
-          trans (cong (coh _ _) (cohvˢ vs _ _))
+          trans (cong (coh _ _) (cohvˢ vs reflˠ _))
                 (trans (comev t _ p') (sym (coh _ _)))
   comev (t [ ts ]) vs (ev[] p q) =
     trans assoc 
