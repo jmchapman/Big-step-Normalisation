@@ -50,3 +50,5 @@ import NaturalNumbers.TerminationandCompleteness
 import NaturalNumbers.IdentityEnvironment
 import NaturalNumbers.OPERecursive
 import NaturalNumbers.StrongConvertibility
+
+import FullSystem.Utils
