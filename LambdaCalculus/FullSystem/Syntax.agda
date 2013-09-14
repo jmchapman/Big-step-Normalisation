@@ -45,6 +45,8 @@ mutual
     nev : forall {Γ σ} -> NeV Γ σ -> Val Γ σ
     zerov : forall {Γ} -> Val Γ N
     sucv  : forall {Γ} -> Val Γ N -> Val Γ N
+    voidv  : forall {Γ} -> Val Γ One
+    <_,_>v : forall {Γ σ τ} -> Val Γ σ -> Val Γ τ -> Val Γ (σ × τ)
 
   data Env : Con -> Con -> Set where
     ε   : forall {Γ} -> Env Γ ε
