@@ -34,6 +34,8 @@ mutual
   vmap f (nev n)   = nev (nevmap f n) 
   vmap f zerov     = zerov 
   vmap f (sucv v)  = sucv (vmap f v) 
+  vmap f voidv      = voidv
+  vmap f < v , w >v = < vmap f v , vmap f w >v 
 
   nevmap : forall {Γ Δ σ} -> OPE Γ Δ -> NeV Δ σ -> NeV Γ σ
   nevmap f (varV x)      = varV (xmap f x)  

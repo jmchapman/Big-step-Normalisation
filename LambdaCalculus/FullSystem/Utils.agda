@@ -1,4 +1,4 @@
-module NaturalNumbers.Utils where
+module FullSystem.Utils where
 
 infix 10 _==_
 
