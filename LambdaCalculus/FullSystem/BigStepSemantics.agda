@@ -20,6 +20,16 @@ mutual
     rprim : forall {Γ Δ σ}{z : Tm Δ σ}{s t}{vs : Env Γ Δ}{z' s' v} ->
             eval z & vs ⇓ z' -> eval s & vs ⇓ s' -> eval t & vs ⇓ v ->
             {w : Val Γ σ} -> prim z' & s' & v ⇓ w -> eval prim z s t & vs ⇓ w
+    rvoid : forall {Γ Δ}{vs : Env Γ Δ} -> eval void & vs ⇓ voidv
+    r<,>  : forall {Γ Δ σ τ}{t : Tm Δ σ}{u : Tm Δ τ}{vs : Env Γ Δ}
+            {v : Val Γ σ}{w : Val Γ τ} -> eval t & vs ⇓ v -> eval u & vs ⇓ w ->
+            eval < t , u > & vs ⇓ < v , w >v
+    rfst  : forall {Γ Δ σ τ}{t : Tm Δ (σ × τ)}{vs : Env Γ Δ}
+            {v : Val Γ (σ × τ)} -> eval t & vs ⇓ v ->
+            {w : Val Γ σ} -> vfst v ⇓ w -> eval fst t & vs ⇓ w 
+    rsnd  : forall {Γ Δ σ τ}{t : Tm Δ (σ × τ)}{vs : Env Γ Δ}
+            {v : Val Γ (σ × τ)} -> eval t & vs ⇓ v -> 
+            {w : Val Γ τ} -> vsnd v ⇓ w -> eval snd t & vs ⇓ w
 
   data prim_&_&_⇓_ : forall {Γ σ} -> Val Γ σ -> Val Γ (N ⇒ σ ⇒ σ) -> Val Γ N ->
                      Val Γ σ -> Set where
@@ -32,6 +42,14 @@ mutual
            {w : Val Γ σ} -> prim z & s & v ⇓ w -> 
            {w' : Val Γ σ} -> f $$ w ⇓ w' ->
            prim z & s & sucv v ⇓ w'
+
+  data vfst_⇓_ : forall {Γ σ τ} -> Val Γ (σ × τ) -> Val Γ σ -> Set where
+    rfst<,> : forall {Γ σ τ}{v : Val Γ σ}{w : Val Γ τ} -> vfst < v , w >v ⇓ v
+    rfstnev : forall {Γ σ τ}{n : NeV Γ (σ × τ)} -> vfst nev n ⇓ nev (fstV n) 
+
+  data vsnd_⇓_ : forall {Γ σ τ} -> Val Γ (σ × τ) -> Val Γ τ -> Set where
+    rsnd<,> : forall {Γ σ τ}{v : Val Γ σ}{w : Val Γ τ} -> vsnd < v , w >v ⇓ w
+    rsndnev : forall {Γ σ τ}{n : NeV Γ (σ × τ)} -> vsnd nev n ⇓ nev (sndV n) 
            
   data _$$_⇓_ : forall {Γ σ τ} -> 
                 Val Γ (σ ⇒ τ) -> Val Γ σ -> Val Γ τ -> Set where

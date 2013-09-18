@@ -11,13 +11,13 @@ data Σ (A : Set) (B : A -> Set) : Set where
 σ₂ : {A : Set} -> {B : A -> Set} -> (s : Σ A B) -> B (σ₁ s)
 σ₂ (sig _ b) = b
 
-data _×_ (A B : Set) : Set where
-  pr : A -> B -> A × B
+data _∧_ (A B : Set) : Set where
+  pr : A -> B -> A ∧ B
 
-π₁ : {A B : Set} -> A × B -> A
+π₁ : {A B : Set} -> A ∧ B -> A
 π₁ (pr a _) = a
 
-π₂ : {A B : Set} -> A × B -> B
+π₂ : {A B : Set} -> A ∧ B -> B
 π₂ (pr _ b) = b
 
 
