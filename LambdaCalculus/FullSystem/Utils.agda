@@ -31,8 +31,8 @@ t2 (tr _ b _) = b
 t3 : {A B C : Set} -> A ∧ B ∧ C -> C
 t3 (tr _ _ c) = c
 
-data One : Set where
-  void : One
+data True : Set where
+  void : True
 
 data _==_ {A : Set} : (a : A) -> {B : Set} -> (b : B) -> Set where
   refl⁼ : {a : A} -> a == a

@@ -80,6 +80,11 @@ mutual
             quot sucv v ⇓ sucn n 
     qNn   : forall {Γ}{n : NeV Γ N}{n' : NeN Γ N} -> quotⁿ n ⇓ n' ->
             quot nev n ⇓ neN n'
+    qone   : forall {Γ}{v : Val Γ One} -> quot v ⇓ voidn
+    qprod  : forall {Γ σ τ}{p : Val Γ (σ × τ)}
+             {v : Val Γ σ} -> vfst p ⇓ v -> {m : Nf Γ σ} -> quot v ⇓ m ->
+             {w : Val Γ τ} -> vsnd p ⇓ w -> {n : Nf Γ τ} -> quot w ⇓ n ->
+             quot p ⇓ < m , n >n
 
   data quotⁿ_⇓_ : forall {Γ σ} -> NeV Γ σ -> NeN Γ σ -> Set where
     qⁿvar  : forall {Γ σ}{x : Var Γ σ} -> quotⁿ varV x ⇓ varN x
@@ -88,6 +93,10 @@ mutual
     qⁿprim : forall {Γ σ}{z : Val Γ σ}{s n z' s' n'} -> quot z ⇓ z' ->
              quot s ⇓ s' -> quotⁿ n ⇓ n' -> 
              quotⁿ primV z s n ⇓ primN z' s' n'
+    qⁿfst : forall {Γ σ τ}{m : NeV Γ (σ × τ)}{n : NeN Γ (σ × τ)} ->
+            quotⁿ m ⇓ n -> quotⁿ fstV m ⇓ fstN n
+    qⁿsnd : forall {Γ σ τ}{m : NeV Γ (σ × τ)}{n : NeN Γ (σ × τ)} ->
+            quotⁿ m ⇓ n -> quotⁿ sndV m ⇓ sndN n
 
 open import FullSystem.IdentityEnvironment
 
