@@ -1,3 +1,4 @@
+
 {-# OPTIONS --no-termination-check #-}
 
 module BetaEta.Quote where
@@ -193,7 +194,487 @@ mutual
   abstract 
     comquot : forall {Γ}(σ : VTy Γ)(v : Val Γ (emb⁺ σ)) -> 
            nemb (quot σ v) ≡ emb v
-    comquot (VΠ σ τ vs) f          = {!!}
+    comquot (VΠ σ τ vs) f          = trans 
+      (coh
+        (λt
+         (nemb
+          (quot
+           (ev⁺ τ
+            (evˢ (embˢ vs) (wkˢ (σ [ embˢ vs ]⁺) vid) <<
+             coev
+             (coev
+              (coev
+               (coev
+                (coev
+                 (coev
+                  (coev (nev (var vZ))
+                   (cong⁺ refl⁺
+                    (transˢ (symˢ leftid)
+                     (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))
+                  (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+                 (trans⁺ assoc⁺
+                  (cong⁺ refl⁺
+                   (comevˢ (pop (σ [ embˢ vs ]⁺))
+                    (wkˢ (σ [ embˢ vs ]⁺) vid <<
+                     coev (nev (var vZ))
+                     (cong⁺ refl⁺
+                      (transˢ (symˢ leftid)
+                       (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))))))
+                (cong⁺ (sym⁺ refl⁺)
+                 (cohvˢ (wkˢ (σ [ embˢ vs ]⁺) vid) (cong, reflˠ refl⁺)
+                  (symˠ reflˠ))))
+               (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+              (cong⁺ assoc⁺
+               (symˢ
+                (cohvˢ
+                 (wkˢ (σ [ embˢ vs ]⁺) vid <<
+                  coev
+                  (coev
+                   (coev (nev (var vZ))
+                    (cong⁺ refl⁺
+                     (transˢ (symˢ leftid)
+                      (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))
+                   (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+                  (trans⁺ assoc⁺
+                   (cong⁺ refl⁺
+                    (comevˢ (pop (σ [ embˢ vs ]⁺))
+                     (wkˢ (σ [ embˢ vs ]⁺) vid <<
+                      coev (nev (var vZ))
+                      (cong⁺ refl⁺
+                       (transˢ (symˢ leftid)
+                        (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))))))
+                 (cong, reflˠ refl⁺) (cong, (symˠ reflˠ) (sym⁺ refl⁺))))))
+             (trans⁺ assoc⁺
+              (cong⁺ refl⁺
+               (comevˢ (embˢ vs • pop (σ [ embˢ vs ]⁺))
+                (wkˢ (σ [ embˢ vs ]⁺) vid <<
+                 coev
+                 (coev
+                  (coev (nev (var vZ))
+                   (cong⁺ refl⁺
+                    (transˢ (symˢ leftid)
+                     (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))
+                  (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+                 (trans⁺ assoc⁺
+                  (cong⁺ refl⁺
+                   (comevˢ (pop (σ [ embˢ vs ]⁺))
+                    (wkˢ (σ [ embˢ vs ]⁺) vid <<
+                     coev (nev (var vZ))
+                     (cong⁺ refl⁺
+                      (transˢ (symˢ leftid)
+                       (transˢ (cong• comvid reflˢ)
+                        (comwkˢ (σ [ embˢ vs ]⁺) vid))))))))))))))
+           (replace
+            (vapp (wk (coe⁺ (σ [ embˢ vs ]⁺) (symˠ reflˠ)) f)
+             (trans⁺ (cong⁺ Π[] (congpop (coh⁺ (σ [ embˢ vs ]⁺) (symˠ reflˠ))))
+              refl⁺)
+             (nev (var vZ)))))))
+        
+        (trans⁺
+         (congΠ refl⁺
+          (trans⁺
+           (sym⁺
+            (comev⁺ τ
+             (evˢ (embˢ vs) (wkˢ (σ [ embˢ vs ]⁺) vid) <<
+              coev
+              (coev
+               (coev
+                (coev
+                 (coev
+                  (coev
+                   (coev (nev (var vZ))
+                    (cong⁺ refl⁺
+                     (transˢ (symˢ leftid)
+                      (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))
+                   (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+                  (trans⁺ assoc⁺
+                   (cong⁺ refl⁺
+                    (comevˢ (pop (σ [ embˢ vs ]⁺))
+                     (wkˢ (σ [ embˢ vs ]⁺) vid <<
+                      coev (nev (var vZ))
+                      (cong⁺ refl⁺
+                       (transˢ (symˢ leftid)
+                        (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))))))
+                 (cong⁺ (sym⁺ refl⁺)
+                  (cohvˢ (wkˢ (σ [ embˢ vs ]⁺) vid) (cong, reflˠ refl⁺)
+                   (symˠ reflˠ))))
+                (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+               (cong⁺ assoc⁺
+                (symˢ
+                 (cohvˢ
+                  (wkˢ (σ [ embˢ vs ]⁺) vid <<
+                   coev
+                   (coev
+                    (coev (nev (var vZ))
+                     (cong⁺ refl⁺
+                      (transˢ (symˢ leftid)
+                       (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))
+                    (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+                   (trans⁺ assoc⁺
+                    (cong⁺ refl⁺
+                     (comevˢ (pop (σ [ embˢ vs ]⁺))
+                      (wkˢ (σ [ embˢ vs ]⁺) vid <<
+                       coev (nev (var vZ))
+                       (cong⁺ refl⁺
+                        (transˢ (symˢ leftid)
+                         (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))))))
+                  (cong, reflˠ refl⁺) (cong, (symˠ reflˠ) (sym⁺ refl⁺))))))
+              (trans⁺ assoc⁺
+               (cong⁺ refl⁺
+                (comevˢ (embˢ vs • pop (σ [ embˢ vs ]⁺))
+                 (wkˢ (σ [ embˢ vs ]⁺) vid <<
+                  coev
+                  (coev
+                   (coev (nev (var vZ))
+                    (cong⁺ refl⁺
+                     (transˢ (symˢ leftid)
+                      (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))
+                   (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+                  (trans⁺ assoc⁺
+                   (cong⁺ refl⁺
+                    (comevˢ (pop (σ [ embˢ vs ]⁺))
+                     (wkˢ (σ [ embˢ vs ]⁺) vid <<
+                      coev (nev (var vZ))
+                      (cong⁺ refl⁺
+                       (transˢ (symˢ leftid)
+                        (transˢ (cong• comvid reflˢ)
+                         (comwkˢ (σ [ embˢ vs ]⁺) vid)))))))))))))))
+           (cong⁺ refl⁺
+            (cong<
+             (transˢ (symˢ (comevˢ (embˢ vs) (wkˢ (σ [ embˢ vs ]⁺) vid)))
+              (cong• reflˢ
+               (transˢ (symˢ (comwkˢ (σ [ embˢ vs ]⁺) vid))
+                (transˢ (cong• (symˢ comvid) reflˢ) leftid))))
+             (trans
+              (coh
+               (coe
+                (coe
+                 (coe
+                  (coe
+                   (coe
+                    (coe top
+                     (cong⁺ refl⁺
+                      (transˢ (symˢ leftid)
+                       (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))
+                    (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+                   (trans⁺ assoc⁺
+                    (cong⁺ refl⁺
+                     (comevˢ (pop (σ [ embˢ vs ]⁺))
+                      (wkˢ (σ [ embˢ vs ]⁺) vid <<
+                       coev (nev (var vZ))
+                       (cong⁺ refl⁺
+                        (transˢ (symˢ leftid)
+                         (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))))))
+                  (cong⁺ (sym⁺ refl⁺)
+                   (cohvˢ (wkˢ (σ [ embˢ vs ]⁺) vid) (cong, reflˠ refl⁺)
+                    (symˠ reflˠ))))
+                 (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+                (cong⁺ assoc⁺
+                 (symˢ
+                  (cohvˢ
+                   (wkˢ (σ [ embˢ vs ]⁺) vid <<
+                    coev
+                    (coev
+                     (coev (nev (var vZ))
+                      (cong⁺ refl⁺
+                       (transˢ (symˢ leftid)
+                        (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))
+                     (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+                    (trans⁺ assoc⁺
+                     (cong⁺ refl⁺
+                      (comevˢ (pop (σ [ embˢ vs ]⁺))
+                       (wkˢ (σ [ embˢ vs ]⁺) vid <<
+                        coev (nev (var vZ))
+                        (cong⁺ refl⁺
+                         (transˢ (symˢ leftid)
+                          (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))))))
+                   (cong, reflˠ refl⁺) (cong, (symˠ reflˠ) (sym⁺ refl⁺))))))
+               (trans⁺ assoc⁺
+                (cong⁺ refl⁺
+                 (comevˢ (embˢ vs • pop (σ [ embˢ vs ]⁺))
+                  (wkˢ (σ [ embˢ vs ]⁺) vid <<
+                   coev
+                   (coev
+                    (coev (nev (var vZ))
+                     (cong⁺ refl⁺
+                      (transˢ (symˢ leftid)
+                       (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))
+                    (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+                   (trans⁺ assoc⁺
+                    (cong⁺ refl⁺
+                     (comevˢ (pop (σ [ embˢ vs ]⁺))
+                      (wkˢ (σ [ embˢ vs ]⁺) vid <<
+                       coev (nev (var vZ))
+                       (cong⁺ refl⁺
+                        (transˢ (symˢ leftid)
+                         (transˢ (cong• comvid reflˢ)
+                          (comwkˢ (σ [ embˢ vs ]⁺) vid)))))))))))))
+              (trans
+               (coh
+                (coe
+                 (coe
+                  (coe
+                   (coe
+                    (coe top
+                     (cong⁺ refl⁺
+                      (transˢ (symˢ leftid)
+                       (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))
+                    (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+                   (trans⁺ assoc⁺
+                    (cong⁺ refl⁺
+                     (comevˢ (pop (σ [ embˢ vs ]⁺))
+                      (wkˢ (σ [ embˢ vs ]⁺) vid <<
+                       coev (nev (var vZ))
+                       (cong⁺ refl⁺
+                        (transˢ (symˢ leftid)
+                         (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))))))
+                  (cong⁺ (sym⁺ refl⁺)
+                   (cohvˢ (wkˢ (σ [ embˢ vs ]⁺) vid) (cong, reflˠ refl⁺)
+                    (symˠ reflˠ))))
+                 (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+                (cong⁺ assoc⁺
+                 (symˢ
+                  (cohvˢ
+                   (wkˢ (σ [ embˢ vs ]⁺) vid <<
+                    coev
+                    (coev
+                     (coev (nev (var vZ))
+                      (cong⁺ refl⁺
+                       (transˢ (symˢ leftid)
+                        (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))
+                     (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+                    (trans⁺ assoc⁺
+                     (cong⁺ refl⁺
+                      (comevˢ (pop (σ [ embˢ vs ]⁺))
+                       (wkˢ (σ [ embˢ vs ]⁺) vid <<
+                        coev (nev (var vZ))
+                        (cong⁺ refl⁺
+                         (transˢ (symˢ leftid)
+                          (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))))))
+                   (cong, reflˠ refl⁺) (cong, (symˠ reflˠ) (sym⁺ refl⁺))))))
+               (trans
+                (coh
+                 (coe
+                  (coe
+                   (coe
+                    (coe top
+                     (cong⁺ refl⁺
+                      (transˢ (symˢ leftid)
+                       (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))
+                    (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+                   (trans⁺ assoc⁺
+                    (cong⁺ refl⁺
+                     (comevˢ (pop (σ [ embˢ vs ]⁺))
+                      (wkˢ (σ [ embˢ vs ]⁺) vid <<
+                       coev (nev (var vZ))
+                       (cong⁺ refl⁺
+                        (transˢ (symˢ leftid)
+                         (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))))))
+                  (cong⁺ (sym⁺ refl⁺)
+                   (cohvˢ (wkˢ (σ [ embˢ vs ]⁺) vid) (cong, reflˠ refl⁺)
+                    (symˠ reflˠ))))
+                 (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+                (trans
+                 (coh
+                  (coe
+                   (coe
+                    (coe top
+                     (cong⁺ refl⁺
+                      (transˢ (symˢ leftid)
+                       (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))
+                    (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+                   (trans⁺ assoc⁺
+                    (cong⁺ refl⁺
+                     (comevˢ (pop (σ [ embˢ vs ]⁺))
+                      (wkˢ (σ [ embˢ vs ]⁺) vid <<
+                       coev (nev (var vZ))
+                       (cong⁺ refl⁺
+                        (transˢ (symˢ leftid)
+                         (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))))))
+                  (cong⁺ (sym⁺ refl⁺)
+                   (cohvˢ (wkˢ (σ [ embˢ vs ]⁺) vid) (cong, reflˠ refl⁺)
+                    (symˠ reflˠ))))
+                 (trans
+                  (coh
+                   (coe
+                    (coe top
+                     (cong⁺ refl⁺
+                      (transˢ (symˢ leftid)
+                       (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))
+                    (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+                   (trans⁺ assoc⁺
+                    (cong⁺ refl⁺
+                     (comevˢ (pop (σ [ embˢ vs ]⁺))
+                      (wkˢ (σ [ embˢ vs ]⁺) vid <<
+                       coev (nev (var vZ))
+                       (cong⁺ refl⁺
+                        (transˢ (symˢ leftid)
+                         (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))))))
+                  (trans
+                   (coh
+                    (coe top
+                     (cong⁺ refl⁺
+                      (transˢ (symˢ leftid)
+                       (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))
+                    (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+                   (trans
+                    (coh top
+                     (cong⁺ refl⁺
+                      (transˢ (symˢ leftid)
+                       (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))
+                    (sym (coh top assoc⁺)))))))))))))
+         (sym⁺ Π[])))
+      (trans (trans (congλ refl⁺ (trans
+                                    (comquot
+                                     (ev⁺ τ
+                                      (evˢ (embˢ vs) (wkˢ (σ [ embˢ vs ]⁺) vid) <<
+                                       coev
+                                       (coev
+                                        (coev
+                                         (coev
+                                          (coev
+                                           (coev
+                                            (coev (nev (var vZ))
+                                             (cong⁺ refl⁺
+                                              (transˢ (symˢ leftid)
+                                               (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))
+                                            (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+                                           (trans⁺ assoc⁺
+                                            (cong⁺ refl⁺
+                                             (comevˢ (pop (σ [ embˢ vs ]⁺))
+                                              (wkˢ (σ [ embˢ vs ]⁺) vid <<
+                                               coev (nev (var vZ))
+                                               (cong⁺ refl⁺
+                                                (transˢ (symˢ leftid)
+                                                 (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))))))
+                                          (cong⁺ (sym⁺ refl⁺)
+                                           (cohvˢ (wkˢ (σ [ embˢ vs ]⁺) vid) (cong, reflˠ refl⁺)
+                                            (symˠ reflˠ))))
+                                         (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+                                        (cong⁺ assoc⁺
+                                         (symˢ
+                                          (cohvˢ
+                                           (wkˢ (σ [ embˢ vs ]⁺) vid <<
+                                            coev
+                                            (coev
+                                             (coev (nev (var vZ))
+                                              (cong⁺ refl⁺
+                                               (transˢ (symˢ leftid)
+                                                (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))
+                                             (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+                                            (trans⁺ assoc⁺
+                                             (cong⁺ refl⁺
+                                              (comevˢ (pop (σ [ embˢ vs ]⁺))
+                                               (wkˢ (σ [ embˢ vs ]⁺) vid <<
+                                                coev (nev (var vZ))
+                                                (cong⁺ refl⁺
+                                                 (transˢ (symˢ leftid)
+                                                  (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))))))
+                                           (cong, reflˠ refl⁺) (cong, (symˠ reflˠ) (sym⁺ refl⁺))))))
+                                       (trans⁺ assoc⁺
+                                        (cong⁺ refl⁺
+                                         (comevˢ (embˢ vs • pop (σ [ embˢ vs ]⁺))
+                                          (wkˢ (σ [ embˢ vs ]⁺) vid <<
+                                           coev
+                                           (coev
+                                            (coev (nev (var vZ))
+                                             (cong⁺ refl⁺
+                                              (transˢ (symˢ leftid)
+                                               (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))
+                                            (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+                                           (trans⁺ assoc⁺
+                                            (cong⁺ refl⁺
+                                             (comevˢ (pop (σ [ embˢ vs ]⁺))
+                                              (wkˢ (σ [ embˢ vs ]⁺) vid <<
+                                               coev (nev (var vZ))
+                                               (cong⁺ refl⁺
+                                                (transˢ (symˢ leftid)
+                                                 (transˢ (cong• comvid reflˢ)
+                                                  (comwkˢ (σ [ embˢ vs ]⁺) vid))))))))))))))
+                                     (replace
+                                      (vapp (wk (coe⁺ (σ [ embˢ vs ]⁺) (symˠ reflˠ)) f)
+                                       (trans⁺ (cong⁺ Π[] (congpop (coh⁺ (σ [ embˢ vs ]⁺) (symˠ reflˠ))))
+                                        refl⁺)
+                                       (nev (var vZ)))))
+                                    {!!})) η) (coh (emb f) Π[]))
+    
+{-
+nemb
+(quot
+ (ev⁺ τ
+  (evˢ (embˢ vs) (wkˢ (σ [ embˢ vs ]⁺) vid) <<
+   coev
+   (coev
+    (coev
+     (coev
+      (coev
+       (coev
+        (coev (nev (var vZ))
+         (cong⁺ refl⁺
+          (transˢ (symˢ leftid)
+           (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))
+        (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+       (trans⁺ assoc⁺
+        (cong⁺ refl⁺
+         (comevˢ (pop (σ [ embˢ vs ]⁺))
+          (wkˢ (σ [ embˢ vs ]⁺) vid <<
+           coev (nev (var vZ))
+           (cong⁺ refl⁺
+            (transˢ (symˢ leftid)
+             (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))))))
+      (cong⁺ (sym⁺ refl⁺)
+       (cohvˢ (wkˢ (σ [ embˢ vs ]⁺) vid) (cong, reflˠ refl⁺)
+        (symˠ reflˠ))))
+     (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+    (cong⁺ assoc⁺
+     (symˢ
+      (cohvˢ
+       (wkˢ (σ [ embˢ vs ]⁺) vid <<
+        coev
+        (coev
+         (coev (nev (var vZ))
+          (cong⁺ refl⁺
+           (transˢ (symˢ leftid)
+            (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))
+         (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+        (trans⁺ assoc⁺
+         (cong⁺ refl⁺
+          (comevˢ (pop (σ [ embˢ vs ]⁺))
+           (wkˢ (σ [ embˢ vs ]⁺) vid <<
+            coev (nev (var vZ))
+            (cong⁺ refl⁺
+             (transˢ (symˢ leftid)
+              (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))))))
+       (cong, reflˠ refl⁺) (cong, (symˠ reflˠ) (sym⁺ refl⁺))))))
+   (trans⁺ assoc⁺
+    (cong⁺ refl⁺
+     (comevˢ (embˢ vs • pop (σ [ embˢ vs ]⁺))
+      (wkˢ (σ [ embˢ vs ]⁺) vid <<
+       coev
+       (coev
+        (coev (nev (var vZ))
+         (cong⁺ refl⁺
+          (transˢ (symˢ leftid)
+           (transˢ (cong• comvid reflˢ) (comwkˢ (σ [ embˢ vs ]⁺) vid)))))
+        (trans⁺ (cong⁺ refl⁺ (symˢ pop<)) (sym⁺ assoc⁺)))
+       (trans⁺ assoc⁺
+        (cong⁺ refl⁺
+         (comevˢ (pop (σ [ embˢ vs ]⁺))
+          (wkˢ (σ [ embˢ vs ]⁺) vid <<
+           coev (nev (var vZ))
+           (cong⁺ refl⁺
+            (transˢ (symˢ leftid)
+             (transˢ (cong• comvid reflˢ)
+              (comwkˢ (σ [ embˢ vs ]⁺) vid))))))))))))))
+ (replace
+  (vapp (wk (coe⁺ (σ [ embˢ vs ]⁺) (symˠ reflˠ)) f)
+   (trans⁺ (cong⁺ Π[] (congpop (coh⁺ (σ [ embˢ vs ]⁺) (symˠ reflˠ))))
+    refl⁺)
+   (nev (var vZ)))))
+
+-}
+
+
 
 {- 
     trans (coh _ _) 
