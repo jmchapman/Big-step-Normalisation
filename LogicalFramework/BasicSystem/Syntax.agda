@@ -4,6 +4,10 @@ infix 10 _≡ˠ_
 infix 10 _≡⁺_
 infix 10 _≡ˢ_
 infix 10 _≡_
+infix 25 _[_]
+infix 25 _[_]'
+infix 25 _[_]⁺
+infix 25 _[_]⁺'
 infixl 50 _•_
 
 mutual 

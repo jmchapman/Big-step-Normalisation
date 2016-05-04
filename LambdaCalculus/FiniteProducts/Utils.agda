@@ -1,6 +1,8 @@
 module FiniteProducts.Utils where
 
 infix 10 _==_
+infix 15 _∧_
+infix 15 _∧_∧_
 
 data Σ (A : Set) (B : A -> Set) : Set where
   sig : (a : A) -> B a -> Σ A B
