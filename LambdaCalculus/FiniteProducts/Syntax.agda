@@ -1,5 +1,7 @@
 module FiniteProducts.Syntax where
 
+infix 25 _[_]
+
 data Ty : Set where
   ι   : Ty  
   _⇒_ : Ty -> Ty -> Ty
